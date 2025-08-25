@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+# Proyecto React con Autenticación y Roles
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este es el frontend de una aplicación web construida con React. La aplicación cuenta con un sistema de autenticación de usuarios, gestión de sesiones y control de acceso basado en roles (administradores y usuarios regulares).
 
-## Available Scripts
+## ✨ Características
 
-In the project directory, you can run:
+- **Autenticación de Usuarios:** Sistema completo de registro e inicio de sesión.
+- **Rutas Protegidas:** Ciertas secciones de la web solo son accesibles para usuarios autenticados.
+- **Control de Acceso por Roles:**
+  - Rutas exclusivas para administradores.
+  - Rutas para usuarios regulares.
+- **Gestión de Perfil de Usuario:** Los usuarios pueden ver y gestionar la información de su cuenta.
+- **Diseño Responsivo:** Interfaz adaptable a diferentes tamaños de pantalla gracias a Bootstrap.
+
+## 🚀 Tecnologías Utilizadas
+
+Este proyecto es una aplicación de una sola página (SPA) construida con las siguientes tecnologías:
+
+### Frontend
+
+- **React:** Biblioteca principal para la construcción de la interfaz de usuario.
+- **React Router DOM:** Para la gestión de rutas en la aplicación.
+- **React Hook Form:** Para la gestión de formularios y validaciones.
+- **Axios:** Para realizar peticiones HTTP al backend.
+- **Bootstrap y React-Bootstrap:** Para el diseño y los componentes de la interfaz.
+- **Styled-components:** Para estilos personalizados a nivel de componentes.
+
+### Backend (Asumido)
+
+Aunque el código del backend no se encuentra en este repositorio, el `package.json` sugiere que está construido con:
+
+- **Node.js con Express:** Como entorno de ejecución y framework para el servidor.
+- **MongoDB con Mongoose:** Como base de datos y ODM para modelar los datos.
+- **bcrypt:** Para el hasheo y la seguridad de las contraseñas.
+
+## 🔧 Instalación y Puesta en Marcha
+
+Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
+
+1. **Clona el repositorio:**
+
+   ```bash
+   git clone <URL-DEL-REPOSITORIO>
+   ```
+
+2. **Navega al directorio del proyecto:**
+
+   ```bash
+   cd <NOMBRE-DEL-DIRECTORIO>
+   ```
+
+3. **Instala las dependencias:**
+
+   Asegúrate de tener [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com/) instalados.
+
+   ```bash
+   npm install
+   ```
+
+## 📜 Scripts Disponibles
+
+En el directorio del proyecto, puedes ejecutar los siguientes comandos:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Ejecuta la aplicación en modo de desarrollo.
+Abre [http://localhost:3000](http://localhost:3000) para verla en tu navegador.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+La página se recargará automáticamente si realizas cambios en el código.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lanza el corredor de pruebas en modo interactivo.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Construye la aplicación para producción en la carpeta `build`.
+Empaqueta React correctamente en modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📁 Estructura del Proyecto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+El código fuente de la aplicación se encuentra en el directorio `src`. Aquí tienes un resumen de la estructura:
 
-### `npm run eject`
+```
+src/
+├── assets/         # Imágenes, iconos y otros recursos estáticos
+├── Components/     # Componentes reutilizables de React
+│   ├── Auth/       # Lógica de autenticación (AuthProvider, useAuth)
+│   ├── Cards/      # Componentes de tarjetas
+│   ├── Hooks/      # Hooks personalizados
+│   ├── Layout/     # Componente principal de la estructura (Layout)
+│   ├── Navigations # Barra de navegación
+│   ├── Routers/    # Configuración de rutas (públicas y privadas)
+│   └── ...
+├── pages/          # Vistas principales de la aplicación
+│   ├── Home/
+│   ├── Login/
+│   ├── Register/
+│   ├── Consulta/   # Página para usuarios regulares
+│   ├── CRUD/       # Páginas de administrador
+│   └── Usuario/    # Perfil del usuario
+├── index.js        # Punto de entrada de la aplicación
+└── App.js          # Componente raíz que carga el enrutador
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🗺️ Rutas de la Aplicación
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+La aplicación utiliza `react-router-dom` para gestionar la navegación. Las rutas principales son:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Rutas Públicas:**
+  - `/`: Página de inicio.
+  - `/login`: Página de inicio de sesión.
+  - `/register`: Página de registro de nuevos usuarios.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Rutas Privadas (Requieren autenticación):**
+  - `/mi-cuenta`: Perfil del usuario.
+  - `/consultas`: Accesible solo para usuarios con rol `regular`.
+  - `/admin/users`: Accesible solo para usuarios con rol `admin`.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Ruta Comodín:**
+  - `*`: Cualquier otra ruta no definida redirige a la página de inicio.
